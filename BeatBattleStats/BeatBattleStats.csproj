@@ -8,4 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="assets\fonts\BodyPixeled.ttf" />
+    <None Remove="assets\fonts\Pixeled.ttf" />
+    <None Remove="assets\icons\icon 4x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\fonts\BodyPixeled.ttf" />
+    <Resource Include="assets\fonts\Pixeled.ttf" />
+    <Resource Include="assets\icons\icon 4x.png" />
+  </ItemGroup>
+
 </Project>
