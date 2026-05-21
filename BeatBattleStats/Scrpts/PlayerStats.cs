@@ -86,22 +86,30 @@ namespace BeatBattleStats.Scrpts
 
         private static string ExtractBio(string html)
         {
-            var bioMatch = Regex.Match(html, @"""initialBio"":""([^""]+)""");
+            var bioMatch = Regex.Match(html, @"class=""font-mono text-sm leading-relaxed text-bb-ink"">(.*?)<\/");
             return bioMatch.Success ? bioMatch.Groups[1].Value : "";
         }
 
         private static Stats ExtractStats(string html)
         {
-            var winsMatch = Regex.Match(html, @"""wins"":(\d+)");
-            var playedMatch = Regex.Match(html, @"""gamesPlayed"":(\d+)");
+            var stats = new QuickBattleStats();
+
+            var matches = Regex.Matches(html,
+                @"bb-text-depth[^>]*?>\s*(\d+)\s*</span>[\s\S]*?(Played|Wins)",
+                RegexOptions.Singleline);
+
+            foreach (Match m in matches)
+            {
+                int value = int.Parse(m.Groups[1].Value);
+                string type = m.Groups[2].Value;
+
+                if (type == "Played") stats.GamesPlayed = value;
+                else if (type == "Wins") stats.Wins = value;
+            }
 
             return new Stats
             {
-                QuickBattle = new QuickBattleStats
-                {
-                    Wins = winsMatch.Success ? int.Parse(winsMatch.Groups[1].Value) : 0,
-                    GamesPlayed = playedMatch.Success ? int.Parse(playedMatch.Groups[1].Value) : 0
-                },
+                QuickBattle = stats,
                 Ranked = new RankedStats()
             };
         }
