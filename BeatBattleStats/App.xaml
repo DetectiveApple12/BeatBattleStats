@@ -2,8 +2,19 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:BeatBattleStats"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             ThemeMode="Dark">
     <Application.Resources>
-         
+        <!-- Define custom font as a dynamic resource -->
+        <FontFamily x:Key="BodyPixeled">pack://application:,,,/BeatBattleStats;component/assets/fonts/#VCR OSD Mono</FontFamily>
+        <FontFamily x:Key="Pixeled">pack://application:,,,/BeatBattleStats;component/assets/fonts/#Pixeled Regular</FontFamily>
+
+        <!-- Set default font family -->
+        <Style TargetType="TextElement">
+            <Setter Property="FontFamily" Value="{StaticResource BodyPixeled}"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource BodyPixeled}"/>
+        </Style>
     </Application.Resources>
 </Application>
