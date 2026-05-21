@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeatBattleStats"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800" Foreground="White" Background="{x:Null}">
+    <Grid x:Name="RootGrid">
+        <Grid x:Name="GridPages">
+            <Grid x:Name="GP_Intro" d:IsHidden="True">
+                <Border x:Name="introTB" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="450">
+                    <TextBlock HorizontalAlignment="Center" Text="BEAT BATTLE STATS" FontFamily="{DynamicResource Pixeled}" Foreground="Red" FontSize="24" Width="440" TextAlignment="Center"/>
+                </Border>
+                <Image x:Name="introIcon" Source="/assets/icons/icon 4x.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="introIconScale"/>
+                            <SkewTransform/>
+                            <RotateTransform x:Name="introIconRot"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+            <Grid x:Name="GP_Main">
+                <TextBlock x:Name="debugTB" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Window>
